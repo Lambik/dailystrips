@@ -259,14 +259,6 @@ class graphicsmash-girlamatic
         provides latest
 end
 
-class graphicsmash-moderntales
-        type search
-        homepage http://www.moderntales.com/series2.php?name=$1&view=current
-        searchpage http://www.moderntales.com/tooncast.php?series=$1
-        searchpattern <img.+?src=(.+?)>
-        provides latest
-end
-
 # Non-standard strips
 
 # should be possible to generate?
@@ -400,7 +392,8 @@ strip sinfest
     artist Tatsuya Ishida
 	type search
     searchpage $homepage
-    searchpattern <img.+?src="(http://sinfest\.net/.*?/comics/\d{4}-\d{2}-\d{2}\.gif)"
+    searchpattern <img.+?src="(btphp/comics/\d{4}-\d{2}-\d{2}\.gif)"
+	baseurl $homepage
 	provides latest
 end
 
@@ -408,9 +401,9 @@ strip sluggy
 	name Sluggy Freelance
 	homepage http://www.sluggy.com/
 	type search
-	searchpage http://www.sluggy.com/daily.php?date=%y%m%d
-	searchpattern <img.+?src="?(http://pics\.sluggy\.com/comics/%y%m%d.+?\.(gif|jpg))
-	provides any
+	searchpattern <img.+?src="?(/images/comics/\d+a\.(gif|jpg|png))"?
+	baseurl $homepage
+	provides latest
 end
 
 strip squinkers
@@ -520,11 +513,10 @@ end
 
 strip striptease
 	name Strip Tease Comic
-	homepage http://www.stripteasecomic.com/
-	type search
-	searchpattern <img.+?src="(/?strips\d+/\d+\..+?)"
-	baseurl $homepage
-	provides latest
+	homepage http://striptease.keenspot.com/
+    type generate
+    imageurl http://striptease.keenspot.com/comics/%Y%m%d.gif
+    provides any
 end
 
 strip dorktower
@@ -647,7 +639,7 @@ strip dieselsweeties
 	name Diesel Sweeties
 	homepage http://www.dieselsweeties.com/
 	type search
-	searchpattern <img.+?src="(/strips/sw\d+\..+?)"
+	searchpattern <img.+?src="(/hstrips/\d/\d/\d/\d/\d+\..+?)"
 	baseurl $homepage
 	provides latest
 end
@@ -765,14 +757,6 @@ strip elflife
 	provides any
 end
 
-strip ozyandmillie
-	name Ozy and Millie
-	homepage http://www.ozyandmillie.org/
-	type generate
-	imageurl http://www.ozyandmillie.org/comics/om%Y%m%d.gif
-	provides any
-end
-
 # superceded
 #strip suburbanjungle
 #	name Suburban Jungle
@@ -840,9 +824,10 @@ end
 strip wandering
 	name Wandering Ones
 	homepage http://www.wanderingones.com/
-	type generate
-	imageurl http://www.wanderingones.com/comics/wan%Y%m%d.gif
-	provides any
+	type search
+	searchpattern <img.+?src='(/buffer/\d/\d\.jpg)'
+	baseurl $homepage
+	provides latest
 end
 
 strip rvfun
@@ -872,12 +857,12 @@ end
 
 # weekly
 strip youdamnkid
-        name You Damn Kid
-        homepage http://www.youdamnkid.com/
-        type search
-        baseurl $homepage
-        provides latest
-        searchpattern <IMG.+?SRC="/(comics/ydk\d+\.gif)"
+    name You Damn Kid
+    homepage http://www.youdamnkid.com/
+    type search
+    baseurl $homepage
+    provides latest
+	searchpattern <img.+?src="(images/ydk\d+\.png)"
 end
 
 strip houndshome
@@ -1130,16 +1115,6 @@ strip weyershausenwelt
 	name Weyershausen - Wunderbare Welt
 	artist Karsten Weyershausen -> www.weyershausen.de
 	homepage http://portale.web.de/Boulevard/Comics/Weyershausen/
-	type search
-	searchpattern <img.+?src="(http:)?(//)?(img.web.de/c/00.+?)"
-	matchpart 3
-	provides latest
-end
-
-strip quirit
-	name Quirit - alltaegliches auf den Punkt gebracht
-	artist Quirit -> www.quirit.com
-	homepage http://portale.web.de/Boulevard/Comics/Quirit/
 	type search
 	searchpattern <img.+?src="(http:)?(//)?(img.web.de/c/00.+?)"
 	matchpart 3
@@ -1787,8 +1762,10 @@ end
 strip hagarthehorrible
 	name Hagar the Horrible
     artist Chris Browne
-	useclass sfgate-gen
-	$1 Hagar_The_Horrible
+    homepage http://hagarthehorrible.com/
+    type search
+    searchpattern <img.+?src="(http://safr.kingfeatures.com/idn/test/zone/xml/content\.php\?file=.+?)"
+    provides latest
 end
 
 strip mallardfillmore
@@ -1976,13 +1953,6 @@ strip lola
 	useclass comicspage-strips-gen
 	$1 lola
 	$2 lol
-end
-
-strip looseparts
-	name Loose Parts
-	useclass comicspage-strips-gen
-	$1 looseparts2
-	$2 lsp
 end
 
 strip meehan
@@ -2585,16 +2555,6 @@ strip jack
 	type generate
 	imageurl $homepage/comics/Jack%Y%m%d.jpg
 	provides any
-end
-
-strip errantstory
-	name Errant Story
-	artist Michael Poe
-	homepage http://www.errantstory.com
-	type search
-	searchpattern <IMG.+?SRC="(/comics/es.+?)"
-	baseurl $homepage
-	provides latest
 end
 
 strip catandgirl
@@ -4182,9 +4142,10 @@ end
 
 strip grimmy
 	name Mother Goose and Grimm
-	homepage http://www.grimmy.com/daycartoon.asp
+	homepage http://www.grimmy.com/
 	type generate
 	imageurl http://www.grimmy.com/images/%Y/MGG%m%d%y.gif
+	imageurl http://www.grimmy.com/images/MGG_Archive/MGG_%Y/MGG-%Y-%m-%d.gif
 	provides any
 end
 
@@ -4579,13 +4540,6 @@ strip gimbley
 	$1 pooltales
 end
 
-strip americanbornchinese
-	name American Born Chinese
-	artist Gene Yang
-	useclass graphicsmash-moderntales
-	$1 americanbornchinese
-end
-
 strip americanelf
 	name American Elf: the Sketchbook Diaries of James Kochalka
 	artist James Kochalka
@@ -4608,13 +4562,6 @@ strip arcanajayne
 	$1 arcanajayne
 end
 
-strip athena
-	name Athena Voltaire
-	artist Paul Daly, Steve Bryant, and Chad Fidler
-	useclass graphicsmash-moderntales
-	$1 athena
-end
-
 strip biteme
 	name Bite Me!
 	artist Dylan Meconis
@@ -4622,32 +4569,11 @@ strip biteme
 	$1 biteme
 end
 
-strip crss
-	name Charlie Red Eye Sunday Specials
-	artist Edward J. Grug III and Matthew William Boyd Langfield
- 	useclass graphicsmash-moderntales
-	$1 crss
-end
-
 strip chasingrainbows
 	name Chasing Rainbows
 	artist Svetlana Chmakova
 	useclass graphicsmash-girlamatic
 	$1 svetlanaseries
-end
-
-strip circleweave
-	name Circle Weave
-	artist Indigo Kelleigh
-	useclass graphicsmash-moderntales
-	$1 circleweave
-end
-
-strip doublehappiness
-	name Double Happiness
-	artist Jason Shiga
-	useclass graphicsmash-moderntales
-	$1 2xhappiness
 end
 
 strip edie
@@ -4658,39 +4584,11 @@ strip edie
 	$1 edie
 end
 
-strip fancyfroglin
-	name Fancy Froglin
-	artist James Kochalka
-	useclass graphicsmash-moderntales
-	$1 fancyfroglin
-end
-
-strip fearmongers
-	name Fear Mongers
-	artist Joe Zabel
-	useclass graphicsmash-moderntales
-	$1 fearmongers
-end
-
 strip fetusx
 	name Fetus-X
 	artist Eric Millikin and Casey Sorrow
 	useclass graphicsmash-serializer
 	$1 fetusx
-end
-
-strip fredtheclown
-	name Fred the Clown
-	artist Roger Langridge
-	useclass graphicsmash-moderntales
-	$1 fredtheclown
-end
-
-strip hutchowen
-	name HUTCH OWEN - Public Relations!
-	artist Tom Hart
-	useclass graphicsmash-moderntales
-	$1 hutchowen
 end
 
 strip hope
@@ -4735,110 +4633,12 @@ strip lionel
 	$1 lionel
 end
 
-strip locationlocationlocation
-	name Location Location Location
-	artist John Barber
-	useclass graphicsmash-moderntales
-	$1 locationlocationlocation
-end
-
-strip narbonic
-	name Narbonic
-	artist Shaenon K. Garrity
-	useclass graphicsmash-moderntales
-	$1 narbonic
-end
-
-strip nostereotypes
-	name No Stereotypes
-	artist Amber "Glych" Greenlee
-	useclass graphicsmash-moderntales
-	$1 NS
-end
-
-strip oddjobs
-	name Odd Jobs3: Cash and Carry
-	artist Tim Broderick
-	useclass graphicsmash-moderntales
-	$1 oddjobscashandcarry
-end
-
-strip paradigmshift
-	name Paradigm Shift: Part Two
-	artist Dirk Tiede
-	useclass graphicsmash-moderntales
-	$1 PS2
-end
-
-strip pewfell
-	name Pewfell
-	artist Chuck Whelon
-	useclass graphicsmash-moderntales
-	$1 pewfell
-end
-
-strip robotbarber
-	name Robot Barber
-	artist Caleb Sevcik
-	useclass graphicsmash-moderntales
-	$1 robotbarber
-end
-
-strip rogues
-	name Rogues of Clwyd-Rhan
-	artist Reinder Dijkhuis
-	useclass graphicsmash-moderntales
-	$1 rogues
-end
-
-strip northampton
-	name Streets of Northampton
-	artist Chris Shadoian
-	useclass graphicsmash-moderntales
-	$1 northampton
-end
-
-strip charlieredeye
-	name The Bizarre Life of Charlie Red Eye
-	artist Matthew William Boyd Langfield, Esq. and Edward J. Grug III
-	useclass graphicsmash-moderntales
-	$1 charlieredeye
-end
-
-strip death
-	name The New Adventures of Death
-	artist Dorothy Gambrell
-	useclass graphicsmash-moderntales
-	$1 death
-end
-
 strip thestiff
 	name The Stiff
 	artist Jason Thompson
 	homepage http://girlamatic.com/series.php?name=thestiff
 	useclass graphicsmash-girlamatic
 	$1 thestiff
-end
-
-strip tokyohigh
-	name TokyoHigh
-	artist George Panella
-	useclass graphicsmash-moderntales
-	$1 tokyohigh
-end
-
-strip tokyohighdayout
-	name TokyoHigh: A Day Out
-	artist Amber "Glych" Greenlee
-	useclass graphicsmash-moderntales
-	$1 tokyohighguestrun
-end
-
-strip tween
-	name Tween: The Bad Mojo Saga
-	artist Anthony P. Furtado
-	useclass graphicsmash-moderntales
-	$1 tween
 end
 
 strip yeslogo
@@ -5006,7 +4806,7 @@ strip somethingpositive
 	name Something Positive
 	homepage http://www.somethingpositive.net/
 	type search
-	searchpattern <img.+?src="(arch/sp\d+\.gif)"
+	searchpattern <img.+?src="(sp\d+\.png)"
 	baseurl http://www.somethingpositive.net/
 	provides latest
 end
@@ -5202,6 +5002,16 @@ strip applegeeks
     searchpage http://www.applegeeks.com/
 	baseurl $homepage
     provides latest
+end
+
+strip aglite
+	name Applegeek Lite
+	artist Mohammad Haque & Ananth Panagariya
+	homepage http://www.applegeeks.com/lite/
+	type search
+	searchpattern <img.+?src="(strips/aglite\d+\.\w{3})"
+	baseurl $homepage
+	provides latest
 end
 
 strip lovesraymond
@@ -5419,3 +5229,198 @@ strip girlgenius
     searchpage http://www.girlgeniusonline.com/comic.php
     provides latest
 end
+
+strip questionablecontent
+	name Questionable Content
+	artist Jeph Jacques
+	homepage http://www.questionablecontent.net/
+	type search
+	provides latest
+	searchpattern <img.+?src=".*/(comics/\d+\..{3})">
+	baseurl $homepage
+end
+
+strip misfile
+	name Misfile
+	artist Chris Hazelton
+	homepage http://www.misfile.com/
+	type search
+	searchpattern <img.+?src='(comics/\d+/\d+/\d+_.+?\.jpg)'
+	baseurl $homepage
+	provides latest
+end
+
+strip crebheads
+	name Crebheads
+	artist Tariq De Vore
+	homepage http://crebheadcomics.com/
+	type generate
+	provides any
+	imageurl http://crebheadcomics.com/archives/%Y%m%d.gif
+end
+
+#strip toddandpenguin
+#	name Todd and Penguin
+#	artist David Wright
+#	homepage http://www.toddandpenguin.com/
+#	type search
+#	provides latest
+#	searchpattern <IMG.+?SRC="/(comics/tap\d+b?\.\w{3})"
+#	searchtype multiple
+#	baseurl $homepage
+#end
+
+strip dinosaur
+	name Dinosaur comics
+	artist Ryan North
+	homepage http://www.qwantz.com/index.php
+	type search
+	searchpattern <img.+?src="(\S*/comics/comic\d*-\d+\..{3})"
+	provides latest
+end
+
+strip okaypants
+	name Okay Pants
+	artist Julie Keene
+	homepage http://www.okaypants.com/
+	type generate
+	provides any
+	imageurl http://www.okaypants.com/comic/%y%m%d.gif
+end
+
+strip samandfuzzy
+	name Sam and Fuzzy
+	artist Sam Logan
+	homepage http://www.samandfuzzy.com/
+	type search
+	searchpattern <img.+?(?:class="comic-image" )?src="(http://www.samandfuzzy.com/img/comics/\d+\.gif)">
+	provides latest
+end
+
+#strip indietits
+#	name Indietits
+#	artist Jeph Jacques
+#	homepage http://www.indietits.com/
+#	type search
+#	searchpattern <img.+?src="(http://www.indietits.com/comics/\S+\.\w{3})" 
+#	provides latest
+#	searchtype multiple
+#end
+
+strip nataliedee
+	name Natalie Dee Drawings (random)
+	artist Natalie Dee
+	homepage http://www.nataliedee.com/
+	type search
+	searchpattern <a href="(\d+/\S+\.\w{3})"
+	searchpattern <img.+?src="(http://www.nataliedee.com/\d+/\S+\.jpg)">
+	provides latest
+end
+
+strip beaverandsteve
+	name Beaver and Steve
+	artist James Turner
+	homepage http://www.beaverandsteve.com/
+	type search
+	provides latest
+	searchpattern <img.+?src="(comics/BnS_\d+\.\w{3})"
+	baseurl $homepage
+end
+
+#strip girlvspig
+#	name Girl vs Pig
+#	artist Chris Bishop
+#	homepage http://www.chrisbishop.com/her/
+#	type search
+#	provides latest
+#	searchpattern <img.+?src="(strips/her\d+\w\.\w{3})"
+#	baseurl $homepage
+#	searchtype multiple
+#end
+
+strip foksuk
+	name Fokke en Sukke
+	artist RGvT
+	homepage http://www.foksuk.nl/
+	type search
+	provides latest
+	searchpattern <img src="(content/formfield_files/formcartoon_.+?\.jpg)"
+	baseurl $homepage
+end
+
+strip twolumps
+	name Two Lumps
+	artist J. Grant and Mel Hynes
+	homepage http://twolumps.net/
+	type search
+	provides latest
+	searchpattern <IMG.+?SRC="/(comics/\d+\.\w{3})"
+	baseurl $homepage
+end
+
+strip single
+	name Single
+	artist Hanco Kolk and Peter de Wit
+	homepage http://www.s1ngle.nl/idx_strips.html
+	type generate
+	provides any
+	imageurl http://files.ad.nl/strips/image.php?strip=single&datum=%Y-%m-%d
+end
+
+strip sigmund
+	name Sigmund
+	artist Peter de Wit
+	homepage http://www.sigmund.nl/
+	type generate
+	provides any
+	imageurl http://www.sigmund.nl/strips/sig%y%m%d.gif
+end
+
+strip theflyingmccoys
+	name The Flying McCoys
+	artist Glenn and Gary McCoy
+	homepage http://www.gocomics.com/theflyingmccoys/
+	type generate
+	provides any
+	imageurl http://images.ucomics.com/comics/fmc/%Y/fmc%y%m%d.gif
+end
+
+strip lio
+	name Lio
+	artist Mark Tatulli
+	homepage http://www.gocomics.com/lio/
+	type generate
+	provides any
+	imageurl http://images.ucomics.com/comics/lio/%Y/lio%y%m%d.gif
+end
+
+strip neurotica
+	name Neurotica
+	artist Big Al the Gal
+	homepage http://www.gocomics.com/neurotica/
+	type generate
+	provides any
+	imageurl http://images.ucomics.com/comics/neu/%Y/neu%y%m%d.gif
+end
+
+strip cigarro
+	name Cigarro & Cerveja
+	artist Tony Esteves
+	homepage http://www.cigarro.ca/
+	type search
+	searchpattern <img.+?src="(comics/cc\d+.gif)"
+	searchpattern <img.+?src="(http://www.cigarro.ca/wp-content/uploads/2014/07/Hugs.jpg)"
+	provides latest
+end
+
+strip phdcomics
+	name Piled Higher & Deeper
+	artist Jorge Cham
+	homepage http://www.phdcomics.com/
+	type search
+	searchpage http://www.phdcomics.com/comics.php
+	searchpattern <img.+?src=http://www.phdcomics.com(/comics/archive/\S+\.\w{3})
+	baseurl $homepage
+	provides latest
+end
+
