@@ -259,6 +259,15 @@ class graphicsmash-girlamatic
         provides latest
 end
 
+class tumblr
+	homepage http://$1.tumblr.com
+	type search
+	searchpattern <a href="http://$1.tumblr.com/image/\d+"><img src="(http://\d+.media.tumblr.com/.+?/tumblr_.+?)"
+	provides latest
+end
+
+
+
 # Non-standard strips
 
 # should be possible to generate?
@@ -5259,17 +5268,6 @@ strip crebheads
 	imageurl http://crebheadcomics.com/archives/%Y%m%d.gif
 end
 
-#strip toddandpenguin
-#	name Todd and Penguin
-#	artist David Wright
-#	homepage http://www.toddandpenguin.com/
-#	type search
-#	provides latest
-#	searchpattern <IMG.+?SRC="/(comics/tap\d+b?\.\w{3})"
-#	searchtype multiple
-#	baseurl $homepage
-#end
-
 strip dinosaur
 	name Dinosaur comics
 	artist Ryan North
@@ -5297,16 +5295,6 @@ strip samandfuzzy
 	provides latest
 end
 
-#strip indietits
-#	name Indietits
-#	artist Jeph Jacques
-#	homepage http://www.indietits.com/
-#	type search
-#	searchpattern <img.+?src="(http://www.indietits.com/comics/\S+\.\w{3})" 
-#	provides latest
-#	searchtype multiple
-#end
-
 strip nataliedee
 	name Natalie Dee Drawings (random)
 	artist Natalie Dee
@@ -5326,17 +5314,6 @@ strip beaverandsteve
 	searchpattern <img.+?src="(comics/BnS_\d+\.\w{3})"
 	baseurl $homepage
 end
-
-#strip girlvspig
-#	name Girl vs Pig
-#	artist Chris Bishop
-#	homepage http://www.chrisbishop.com/her/
-#	type search
-#	provides latest
-#	searchpattern <img.+?src="(strips/her\d+\w\.\w{3})"
-#	baseurl $homepage
-#	searchtype multiple
-#end
 
 strip foksuk
 	name Fokke en Sukke
@@ -5424,3 +5401,73 @@ strip phdcomics
 	provides latest
 end
 
+strip lunarbaboon
+	name Lunarbaboon
+	artist lunarbaboon
+	homepage http://www.lunarbaboon.com/
+	type search
+	searchpattern <span class="full-image-block ssNonEditable"><span><img.+?src="(/storage/.*?)"
+	baseurl $homepage
+	provides latest
+end
+
+strip onceuponasaturday
+	name Once upon a saturday
+	artist Carlos Ruas
+	homepage http://www.onceuponasaturday.com/
+	type search
+	searchpattern <img class=".+?wp-image-\d+".+?src="(http://www.onceuponasaturday.com/wp-content/uploads/\d+/\d+/.*?)"
+	provides latest
+end
+
+strip chaoslife
+	name Chaos Life
+	artist A. Stiffler & K. Copeland
+	homepage http://chaoslife.findchaos.com/
+	type search
+	searchpattern <img.+? src="(http://chaoslife.findchaos.com/comics/.+?)"
+	provides latest
+end
+
+strip iamarg
+	name I am ARG
+	artist Andrew Gregoire
+	homepage http://iamarg.com/
+	type search
+	searchpattern <img.+?src="(http://iamarg.com/comics/\d+-\d+-\d+.*?)"
+	provides latest
+end
+
+strip nerfthis
+	name Nerf This
+	artist Scott
+	homepage http://nerf-this.com/
+	type search
+	searchpattern <img.+?src="(http://nerf-this.com/wp-content/uploads/\d+/\d+/.*?)"
+	provides latest
+end
+
+strip robothugs
+	name Robot Hugs
+	homepage http://www.robot-hugs.com/
+	type search
+	searchpattern <img.+?src="(http://www.robot-hugs.com/comics/\d+-\d+-\d+-.*?)"
+	provides latest
+end
+
+strip blasternation
+	name Blaster Nation
+	artist Leslie Brown & Brad Brown
+	homepage http://www.blasternation.com/
+	type search
+	searchpattern <img.+?src="(comics/../comics/\d+-\d+-\d+-\d+-.*?)".+?id="comic"
+	baseurl $homepage
+	provides latest
+end
+
+strip accordingtodevin
+	name According to Devin
+	artist Devin
+	useclass tumblr
+	$1 accordingtodevin
+end
