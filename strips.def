@@ -1773,7 +1773,7 @@ strip hagarthehorrible
     artist Chris Browne
     homepage http://hagarthehorrible.com/
     type search
-    searchpattern <img.+?src="(http://safr.kingfeatures.com/idn/test/zone/xml/content\.php\?file=.+?)"
+    searchpattern <img.+?src="(http://safr.kingfeatures.com/idn/etv/zone/xml/content\.php\?file=.+?)"
     provides latest
 end
 
