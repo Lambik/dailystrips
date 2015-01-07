@@ -1102,43 +1102,54 @@ end
 
 strip perscheid
 	name Perscheids Abgruende
-	artist Martin Perscheid -> www.martin-perscheid.de
-	homepage http://portale.web.de/Boulevard/Comics/Perscheid/
+	artist Martin Perscheid
+	homepage http://www.martin-perscheid.de/
 	type search
-	searchpattern <img.+?src="(http:)?(//)?(img.web.de/c/00.+?)"
-	matchpart 3
+	searchpattern <img.+?src="(image/cartoon/.+?)"
+	baseurl $homepage
 	provides latest
 end
 
 strip harmbengen
-	name Harm Bengen's Alltagsskizzen
-	artist Harm Bergen -> www.harmbengen.de
-	homepage http://portale.web.de/Boulevard/Comics/Bengen/
+	name Harm Bengen Zeitungscartoons
+	artist Harm Bergen
+	homepage http://www.harmbengen.de/
 	type search
-	searchpattern <img.+?src="(http:)?(//)?(img.web.de/c/00.+?)"
-	matchpart 3
+	searchpage http://www.harmbengen.de/BengenHome.html
+	searchpattern <img.+?src="(toonpool/.+?)"
+	baseurl $homepage
 	provides latest
 end
 
 strip weyershausenwelt
 	name Weyershausen - Wunderbare Welt
-	artist Karsten Weyershausen -> www.weyershausen.de
-	homepage http://portale.web.de/Boulevard/Comics/Weyershausen/
+	artist Karsten Weyershausen
+	homepage http://www.weyershausen.de/
 	type search
-	searchpattern <img.+?src="(http:)?(//)?(img.web.de/c/00.+?)"
-	matchpart 3
+	searchpage http://www.weyershausen.de/week.html
+	searchpattern <img.+?src="(img/week.jpg)"
+	baseurl $homepage
 	provides latest
 end
 
 strip touche
-        name Touche
-        artist Tom
-        homepage http://www.drive-in-cartoons.de/touche/
-        type search
-        searchpage http://www.drive-in-cartoons.de/touche/hauptteil.php
-        searchpattern <img.+?src='(.+?)'
-        baseurl http://www.drive-in-cartoons.de/touche/
-        provides latest
+	name Touche
+	artist Thomas Körner
+	homepage http://www.drive-in-cartoons.de/modules.php?name=dic&galid=2
+	type search
+	searchpattern <img.+?src="(http://www.drive-in-cartoons.de/galerien/.+?)"
+	provides latest
+end
+
+strip ruthe
+	name Ruthe
+	artist Ralph Ruthe
+	homepage http://www.ruthe.de/
+	type search
+	searchpage http://www.ruthe.de/index.php
+	searchpattern <img.+?src="(/cartoons/.+?\.jpg)"
+	baseurl $homepage
+	provides latest
 end
 
 strip achewood
@@ -1773,7 +1784,7 @@ strip hagarthehorrible
     artist Chris Browne
     homepage http://hagarthehorrible.com/
     type search
-    searchpattern <img.+?src="(http://safr.kingfeatures.com/idn/test/zone/xml/content\.php\?file=.+?)"
+    searchpattern <img.+?src="(http://safr.kingfeatures.com/idn/etv/zone/xml/content\.php\?file=.+?)"
     provides latest
 end
 
