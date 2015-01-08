@@ -1152,6 +1152,17 @@ strip ruthe
 	provides latest
 end
 
+strip ulistein
+	name Uli Stein
+	artist Uli Stein
+	homepage http://www.ulistein.de/
+	type search
+	searchpage http://www.ulistein.de/cartoons.html
+	searchpattern <img.+?src="/cartoonpreview\.php\?(tag=1&r=\d+)"
+	baseurl $homepage/cartoon.php?
+	provides latest
+end
+
 strip achewood
 	name Achewood
 	artist Chris Onstad
