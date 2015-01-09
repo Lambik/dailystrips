@@ -1163,6 +1163,15 @@ strip ulistein
 	provides latest
 end
 
+strip schoenescheisse
+	name Schoene Scheisse
+	artist Piero Masztalerz
+	homepage http://www.schoenescheisse.de/
+	type search
+	searchpattern <a.+?href="(http://www\.schoenescheisse\.de/wp-content/uploads/\d+/\d+/.+?\.jpg)"
+	provides latest
+end
+
 strip achewood
 	name Achewood
 	artist Chris Onstad
