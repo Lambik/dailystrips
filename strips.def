@@ -1432,9 +1432,7 @@ strip dilbert
     artist Scott Adams
     homepage http://www.dilbert.com/
     type search
-    searchpattern <img.+?src="(/dyn/str_strip/\S+\.strip\S*\.(gif|jpg))"
-    searchpage $homepage
-	baseurl $homepage
+    searchpattern <img.+?src="(http://assets.amuniversal.com/[0-9a-f]+)"
     provides latest
 end
 
