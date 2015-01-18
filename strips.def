@@ -1163,6 +1163,15 @@ strip ulistein
 	provides latest
 end
 
+strip schoenescheisse
+	name Schoene Scheisse
+	artist Piero Masztalerz
+	homepage http://www.schoenescheisse.de/
+	type search
+	searchpattern <a.+?href="(http://www\.schoenescheisse\.de/wp-content/uploads/\d+/\d+/.+?\.jpg)"
+	provides latest
+end
+
 strip achewood
 	name Achewood
 	artist Chris Onstad
@@ -1423,9 +1432,7 @@ strip dilbert
     artist Scott Adams
     homepage http://www.dilbert.com/
     type search
-    searchpattern <img.+?src="(/dyn/str_strip/\S+\.strip\S*\.(gif|jpg))"
-    searchpage $homepage
-	baseurl $homepage
+    searchpattern <img.+?src="(http://assets.amuniversal.com/[0-9a-f]+)"
     provides latest
 end
 
