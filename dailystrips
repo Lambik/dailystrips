@@ -7,8 +7,8 @@
 # Description:      creates an HTML page containing a number of online comics, with an easily exensible framework
 # Author:           Andrew Medico <amedico@amedico.dhs.org>
 # Created:          23 Nov 2000, 23:33 EST
-# Last Modified:    Fri Aug 22 12:29:34 UTC 2014
-# Current Revision: 1.0.29
+# Last Modified:    Sat Apr 18 21:52:27 UTC 2015
+# Current Revision: 1.0.30
 #
 
 
@@ -28,7 +28,7 @@ my (%options, $version, $time_today, @localtime_today, @localtime_yesterday, @lo
     $short_date_yesterday, $short_date_tomorrow, @get, @strips, %defs, $known_strips, %groups, $known_groups, %classes, $val,
     $link_tomorrow, $no_dateparse, @base_dirparts);
 
-$version = "1.0.29";
+$version = "1.0.30";
 
 $time_today = time;
 
@@ -1030,7 +1030,7 @@ sub get_strip {
 		}
 	}
 	
-	unless ($addr =~ /^(http:\/\/|unavail)/io) { $addr = "http://" . $addr }
+	unless ($addr =~ /^(https?:\/\/|unavail)/io) { $addr = "http://" . $addr }
 	
 	push(@strips,"$strip;$defs{$strip}{'name'};$defs{$strip}{'homepage'};$addr;$defs{$strip}{'referer'};$defs{$strip}{'prefetch'};$defs{$strip}{'artist'}");
 }
@@ -1162,7 +1162,7 @@ sub get_defs {
 				}
 				
 				for (qw(homepage searchpage baseurl imageurl)){	
-					if ($defs{$strip}{$_} and $defs{$strip}{$_} !~ /^http:\/\//io) {
+					if ($defs{$strip}{$_} and $defs{$strip}{$_} !~ /^https?:\/\//io) {
 						die "Error: strip $strip has invalid $_\n"
 					}
 				}
