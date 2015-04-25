@@ -1,4 +1,4 @@
-# Last update: Wed, 28 May 2014 13:28:53 +0200
+# Last update: Sub Tra 25 09:02:36 UTC 2015
 
 group andrews
 	desc Andrew's Favorite Strips
@@ -5501,4 +5501,13 @@ strip accordingtodevin
 	artist Devin
 	useclass tumblr
 	$1 accordingtodevin
+end
+
+strip commitstrip
+    name CommitStrip
+    artist Etienne Issartial & Thomas Guenoux
+    homepage http://www.commitstrip.com/en/
+    type search
+    searchpattern <img.+?src="(http://www\.commitstrip\.com/wp-content/uploads/\d{4}/\d{2}/\S+\.jpg)"
+    provides latest
 end
